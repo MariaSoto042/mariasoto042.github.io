@@ -1,6 +1,8 @@
-**Hi class, welcome to the AOS C111/204 final project!** <img align="right" width="220" height="220" src="/assets/IMG/template_logo.png">
+**Modeling Water Consumption for Small Rural Communities via Decision Tree Regressor vs Random Forest Regressor** <img align="right" width="220" height="220" src="/assets/IMG/template_logo.png">
 
-For this project, you will be applying your skills to train a machine learning model using real-world data, then publishing a report on your own website.
+INTRODUCTION
+
+Access to potable water is a universal concern that goes especially unaddressed in financially and technologically disadvantaged communities. In particular, small (< 11 residential units) communities with extensive agricultural activities must rely on local and usually contaminated sources of groundwater for domestic, irrigation, and livestock purposes. In an attempt to treat nitrate (NO32) and salinity contaminated water, engineers have developed a diversity of environmental, simple, and highly efficient water treatment systems at municipal scales. 
 
 * To get data for your project, you could:
   * use **your own data** from a separate research activity
