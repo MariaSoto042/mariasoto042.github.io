@@ -11,14 +11,16 @@ Accordingly, the objective of this project was to develop a model capable of for
 The objective of this project was approached in a four-step process that began with data acquisition, followed with data visualization, then the model development, and concluded with a discussion of the model limitations and required future work, Figure 1. The temporal water consumption of Salinas Valley was monitored via a wireless water meter (Spectrum 88DL, Metron-Farnier LLC, CO US) installed in the study community’s main groundwater distribution point. The water consumption history was accessible through internal authorization to Water Scope and was initially visualized to demonstrate the water consumption from 2014 to present at different temperatures, Figure 2. The meteorological data was then obtained from the National Weather Service (NWS) online database. During the data acquisition and preprocessing, blocks of windspeed and/or humidity data (~50 points of data) would randomly be missing during the years 2014-2020 and as such, data from before 2020 was removed from the study and missing data from 2020 – present was filled in with manual meteorological online searches in NWS. In the second phase of the project, a brief statistical description (Figure 3) of five attributes and the target values (water consumption) was obtained and visualized with a histogram (Figure 4) to understand the general nature of the data before model training. 
 
 
-![](assets/IMG/datapenguin.png)
-
+![](assets/IMG/flowchart.png)
 *Figure 1: Workflow of the four main project phases.*
 
+![](assets/IMG/datapenguin.png)
 *Figure 2: Initial data visualization of water consumption from 2014 – present at different temperatures.*
 
+![](assets/IMG/datapenguin.png)
 *Figure 3: General statistical analysis of the dataset.*
 
+![](assets/IMG/water_consumption_histogram.png)
 *Figure 4: Distribution of target values (water consumption).*
 
 When selecting the type of machine learning model, it was important to note that the project dataset was not expected to follow a linear relationship between features and water consumption, there was a potential usage for both numerical and categorical (i.e., weekday) data, and an expected difference in feature importance that would need to be investigated. As such, decision tree regressor was selected first. Nevertheless, to obtain more practice with model development and to compare two very popular and helpful techniques, random forest regressor (RFR) was also used. In contrast to decision trees, RFR mitigates overfitting by combining predictions from multiple decision trees and results in a more generalizable model. Moreover, RFR was expected to be less sensitive to the various outliers observed in this project’s dataset. After each model was built with default hyperparameters, a grid search was executed to tune the hyperparameters and subsequentially increase the accuracy of the model during testing. Finally, the MSE and R2 score of the original and tuned models were compared.
