@@ -15,6 +15,7 @@ The objective of this project was approached in a four-step process that began w
 *Figure 1: Workflow of the four main project phases.*
 
 ![](assets/IMG/DataPlot.png)
+
 *Figure 2: Initial data visualization of water consumption from 2014 – present at different temperatures.*
 
 ![](assets/IMG/statistics.png)
