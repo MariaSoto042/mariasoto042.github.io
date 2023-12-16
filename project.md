@@ -14,13 +14,13 @@ The objective of this project was approached in a four-step process that began w
 ![](assets/IMG/flowchart.png)
 *Figure 1: Workflow of the four main project phases.*
 
-![](assets/IMG/datapenguin.png)
+![](assets/IMG/DataPlot.png)
 *Figure 2: Initial data visualization of water consumption from 2014 – present at different temperatures.*
 
-![](assets/IMG/datapenguin.png)
+![](assets/IMG/statistics.png)
 *Figure 3: General statistical analysis of the dataset.*
 
-![](assets/IMG/water_consumption_histogram.png)
+![](assets/IMG/Histogram.png)
 *Figure 4: Distribution of target values (water consumption).*
 
 When selecting the type of machine learning model, it was important to note that the project dataset was not expected to follow a linear relationship between features and water consumption, there was a potential usage for both numerical and categorical (i.e., weekday) data, and an expected difference in feature importance that would need to be investigated. As such, decision tree regressor was selected first. Nevertheless, to obtain more practice with model development and to compare two very popular and helpful techniques, random forest regressor (RFR) was also used. In contrast to decision trees, RFR mitigates overfitting by combining predictions from multiple decision trees and results in a more generalizable model. Moreover, RFR was expected to be less sensitive to the various outliers observed in this project’s dataset. After each model was built with default hyperparameters, a grid search was executed to tune the hyperparameters and subsequentially increase the accuracy of the model during testing. Finally, the MSE and R2 score of the original and tuned models were compared.
