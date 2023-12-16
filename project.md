@@ -1,6 +1,5 @@
 
 ## Introduction 
-
 Access to potable water is a universal concern that goes especially unaddressed in financially and technologically disadvantaged communities. In particular, small (< 11 residential units) communities with extensive agricultural activities must rely on local and usually contaminated sources of groundwater for domestic, irrigation, and livestock purposes [1]. In an attempt to treat nitrate (NO32) and salinity contaminated water, engineers have developed a diversity of environmental, simple, and highly efficient water treatment systems at municipal scales. Nevertheless, there remains a lack of high resolution (hourly – seasonal variability) water consumption data modeling for precisely configuring and optimizing treatment systems whilst conserving technological and financial feasibility. Understanding water consumption trends becomes especially important for developing novel water treatment systems in remote areas as there is no in-person technical or engineer supervisory and support. As such, understanding and predicting community water consumption trends is critical for designing robust system autonomous operation and self-maintenance [2]. In addition to guiding the design of water treatment systems, forecasting the water consumption of small communities is also important for managing water storage within a reasonable capacity and monitoring groundwater replenishment and/or exhaustion to ensure communities will keep on having access to water. 
 In collaboration with the state of California, the Water Technology Research (WaTeR) Center of the University of California, Los Angeles (UCLA) is actively studying the water consumption trends of a small community located in Salinas Valley, CA. In this joint effort, the WaTeR Center developed a flexible reverse osmosis (FLERO) water treatment system with autonomous operation and a cyberinfrastructure for remote management and operation [2]. Nevertheless, the community water consumption has been observed to vary seasonally and to optimize the FLERO system operation, it is necessary to study and forecast the water consumption in Salinas. 
 The development of algorithms and statistical models with forecasting capabilities is a subset of artificial intelligence known as machine learning. The three main types of machine learning are supervised learning, unsupervised learning, and reinforcement learning. Under supervised learning, a model is trained on a labeled dataset and the input data is paired with corresponding output labels to develop predictions on unseen data. In contrast, unsupervised learning utilizes unlabeled data and the algorithm attempts to find patterns, correlations, or some structure within the data. Finally, reinforcement learning involves an agent that learns to make decision by receiving feedback in the form of rewards or “reinforcement” and alternatively, penalties for different solutions. Some of the most common machine learning models include linear regression, logistic regression, decision trees, random forest, and neural networks. Each type of model is designed to address specific tasks and types of datasets and thus, having a general understanding of the data, features, and desired outputs is necessary in selecting a model. In the case of small community water consumption, the data is expected to reflect a seasonal change in water demand that is impacted by the daily average weather (temperature), humidity, wind speed, and precipitation in the area. As such, a water forecasting model should consider various input features to arrive at a single output feature (water as the target value). 
@@ -12,7 +11,7 @@ Accordingly, the objective of this project was to develop a model capable of for
 The objective of this project was approached in a four-step process that began with data acquisition, followed with data visualization, then the model development, and concluded with a discussion of the model limitations and required future work, Figure 1. The temporal water consumption of Salinas Valley was monitored via a wireless water meter (Spectrum 88DL, Metron-Farnier LLC, CO US) installed in the study community’s main groundwater distribution point. The water consumption history was accessible through internal authorization to Water Scope and was initially visualized to demonstrate the water consumption from 2014 to present at different temperatures, Figure 2. The meteorological data was then obtained from the National Weather Service (NWS) online database. During the data acquisition and preprocessing, blocks of windspeed and/or humidity data (~50 points of data) would randomly be missing during the years 2014-2020 and as such, data from before 2020 was removed from the study and missing data from 2020 – present was filled in with manual meteorological online searches in NWS. In the second phase of the project, a brief statistical description (Figure 3) of five attributes and the target values (water consumption) was obtained and visualized with a histogram (Figure 4) to understand the general nature of the data before model training. 
 
 
-![](assets/IMG/datapenguin.png){: width="500" }
+![](assets/IMG/datapenguin.png)
 
 *Figure 1: Workflow of the four main project phases.*
 
@@ -24,16 +23,6 @@ The objective of this project was approached in a four-step process that began w
 
 When selecting the type of machine learning model, it was important to note that the project dataset was not expected to follow a linear relationship between features and water consumption, there was a potential usage for both numerical and categorical (i.e., weekday) data, and an expected difference in feature importance that would need to be investigated. As such, decision tree regressor was selected first. Nevertheless, to obtain more practice with model development and to compare two very popular and helpful techniques, random forest regressor (RFR) was also used. In contrast to decision trees, RFR mitigates overfitting by combining predictions from multiple decision trees and results in a more generalizable model. Moreover, RFR was expected to be less sensitive to the various outliers observed in this project’s dataset. After each model was built with default hyperparameters, a grid search was executed to tune the hyperparameters and subsequentially increase the accuracy of the model during testing. Finally, the MSE and R2 score of the original and tuned models were compared.
 
-```python
-from sklearn.ensemble import ExtraTreesClassifier
-from sklearn.datasets import make_classification
-X, y = make_classification(n_features=4, random_state=0)
-clf = ExtraTreesClassifier(n_estimators=100, random_state=0)
-clf.fit(X, y)
-clf.predict([[0, 0, 0, 0]])
-```
-
-This is how the method was developed.
 
 ## Results and Discussion
 The decision tree regressor model was developed by training the model with 80% of the data and splitting 20% for testing. Based on the testing data, the model predictions scored a MSE of 28633.83 and a R2 of -1.22 which were pretty unperforming scores relative to the data set, Figure 5. While an R2 value of one reflects a perfect fit between the testing target values and the predicted output values of the decision tree regressor model, a negative R2 score reflects a very inaccurate model. After this disappointing model performance, the tuned hyperparameter model was found to produce a slightly better MSE value (23531.01) and R2 value (-0.073). Nevertheless, the R2 was still negative and subsequently, this model was determined to be extremely inaccurate. 
@@ -57,9 +46,11 @@ Much beyond the model performance, this project (and class) has given me the con
 
 ## References
 [1] K. R. Burow, B. T. Nolan, M. G. Rupert and N. M. Dubrovsky, "Nitrate in Groundwater of the 
-    United States," Environmental Science & Technology, vol. 44, pp. 4988-4997, 2010. 
+    United States," Environmental Science & Technology, vol. 44, pp. 4988-4997, 2010.
+
 [2] Y. Zhou, B. M. Khan, J. Y. Choi and Y. Cohen, "Machine Learning Modeling of Water Use 
     Patterns in Small Disadvantaged Communities," water, vol. 13, 2021. 
+
 [3] J. Y. Choi, T. Lee, A. B. Aleidan, A. Rahardianto, M. Glickfeld, M. E. Kennedy, Y. Chen, P. 
     Haase, C. Chen and Y. Cohen, "On the feasibility of small communities wellhead RO treatment 
     for nitrate removal and salinity reduction," Journal of Environmental Management, vol. 250, 
